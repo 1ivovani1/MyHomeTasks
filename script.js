@@ -1,32 +1,17 @@
 'use strict';
-let lang = "en";
-let days = document.getElementById('days');
 
-if (lang == "ru") {
-  days.innerHTML = "<li>Понедельник</li><li>Вторник</li><li>Среда</li><li>Четверг</li><li>Пятница</li><li>Суббота</li><li>Воскресенье</li>"
-}else if (lang == "en") {
-  days.innerHTML = "<li>Monday</li><li>Tuesday</li><li>Wednesday</li><li>Thirsday</li><li>Friday</li><li>Saturday</li><li>Sunday</li>"
+function trimmer(str){
+  if (typeof str != "string") {
+    console.log("Введена не строка");
+  }else{
+    str = str.trim();
+    if (str.length > 30) {
+      return str = str.substring(0,30) + "...";
+    }else{
+      return str;
+    }
+  }
 }
 
-switch(lang){
-  case "ru":
-    days.innerHTML = "<li>Понедельник</li><li>Вторник</li><li>Среда</li><li>Четверг</li><li>Пятница</li><li>Суббота</li><li>Воскресенье</li>"
-    break;
-  case "en":
-    days.innerHTML = "<li>Monday</li><li>Tuesday</li><li>Wednesday</li><li>Thirsday</li><li>Friday</li><li>Saturday</li><li>Sunday</li>"
-    break;
-}
-
-let cases = [
-    ["<li>Monday</li><li>Tuesday</li><li>Wednesday</li><li>Thirsday</li><li>Friday</li><li>Saturday</li><li>Sunday</li>","<li>Понедельник</li><li>Вторник</li><li>Среда</li><li>Четверг</li><li>Пятница</li><li>Суббота</li><li>Воскресенье</li>"],
-    ['en','ru']
-  ];
-
-  days.innerHTML = cases[0][cases[1].indexOf(lang)];
-
-
-let namePerson = "Артем";
-let whois,
-    result = (namePerson === "Артем" && namePerson !== "Максим") ? console.log('Директор') : whois = '',
-    result1 = (namePerson === "Максим" && namePerson !== "Артем") ? console.log('Преподаватель') : whois = '',
-    result2 = (namePerson !== "Максим" && namePerson !== "Артем") ? console.log('Студент') : whois = '';
+console.log(trimmer("                               Дядя                                 "));
+console.log(trimmer("Повседневная практика показывает, что постоянное информационно-пропагандистское обеспечение нашей деятельности позволяет оценить значение новых предложений. Значимость этих проблем настолько очевидна, что консультация с широким активом требуют определения и уточнения направлений прогрессивного развития. Не следует, однако забывать, что постоянное информационно-пропагандистское обеспечение нашей деятельности способствует подготовки и реализации направлений прогрессивного развития. Не следует, однако забывать, что укрепление и развитие структуры в значительной степени обуславливает создание позиций, занимаемых участниками в отношении поставленных задач. Равным образом рамки и место обучения кадров влечет за собой процесс внедрения и модернизации системы обучения кадров, соответствует насущным потребностям."));
