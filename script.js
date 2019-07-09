@@ -1,16 +1,20 @@
 'use strict';
 
-let week = ["Monday","Tuesday","Wednesday","Thirsday","Friday","Saturday","Sunday"],
-    li = document.getElementsByTagName('li'),
-    nowDate = new Date();
+ let now = new Date(),
+     date = now.getDate().toString(),
+     month = now.getMonth().toString(),
+     year = now.getFullYear().toString(),
+     hours = now.getHours().toString(),
+     minutes = now.getMinutes().toString(),
+     seconds = now.getSeconds().toString();
 
+function plusNull(time){
+  if (time.length === 1) {
+    return time = "0" + time;
+  }
+}
+hours = plusNull(hours);
+date = plusNull(date);
+month = plusNull(month);
 
-week.forEach(function(item,i){
-  if ((i+1) == nowDate.getDay()) {
-    li[i].style.fontWeight = 'bolder';
-  }
-  if (item == "Saturday" || item == "Sunday") {
-    li[i].style.fontStyle = "italic";
-  }
-  li[i].innerHTML = week[i];
- });
+document.write(hours + ":" + minutes + ":" + seconds + "     "  + date + "." + month + "." + year);
