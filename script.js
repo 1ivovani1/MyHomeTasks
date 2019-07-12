@@ -8,8 +8,11 @@ function DomElement(selector,height,width,bg,fontSize){
     this.fontSize = fontSize;
 }
 
+let newElem,
+    topM = 0,
+    leftM = 0;
+    
 DomElement.prototype.createElem = function() {
-    let newElem;
      if (this.selector[0] === '.') {
       newElem = document.createElement('div');
       newElem.classList.add(this.selector.substr(1));
@@ -25,9 +28,26 @@ DomElement.prototype.createElem = function() {
     newElem.style.fontSize = this.fontSize + 'px';
 };
 
-
 let firstElem = new DomElement('.myBlock',100,100,'red',20);
-firstElem.createElem();
-
-let secondElem = new DomElement('#myBlock',100,100,'blue',20);
-secondElem.createElem();
+ document.addEventListener('DOMContentLoaded',function(){
+  firstElem.createElem();
+  newElem.style.position = 'absolute';
+  window.addEventListener('keydown',function(e){
+    if (e.keyCode === 40) {
+      topM += 10;
+      newElem.style.top = topM + 'px';
+    }
+    if (e.keyCode === 39) {
+      leftM += 10;
+      newElem.style.left = leftM + 'px';
+    }
+    if (e.keyCode === 37) {
+      leftM -= 10;
+      newElem.style.left = leftM + 'px';
+    }
+    if (e.keyCode === 38) {
+      topM -= 10;
+      newElem.style.top = topM + 'px';
+    }
+  })
+ });
