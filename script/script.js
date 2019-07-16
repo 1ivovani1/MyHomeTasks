@@ -60,6 +60,7 @@ const budgetDayValue = document.querySelector('.budget_day-value'),
         this.getBudget();
 
         this.showResult();
+        saveCookie();
 
         let disabledInputs = document.querySelectorAll('input');
         disabledInputs.forEach((item) => {
@@ -70,6 +71,7 @@ const budgetDayValue = document.querySelector('.budget_day-value'),
 
         start.style.display = 'none';
         cancel.style.display = 'block';
+
       }
       addBlock(e){
         if (e.target === pluses[0]) {
@@ -211,6 +213,7 @@ const budgetDayValue = document.querySelector('.budget_day-value'),
 
          start.style.display = 'block';
          cancel.style.display = 'none';
+         localStorage.clear();
       }
       eventsListener(){
         start.addEventListener('click',appData.beforeStart.bind(appData));
@@ -256,3 +259,28 @@ const budgetDayValue = document.querySelector('.budget_day-value'),
     appData.eventsListener();
 
     //-----------------------Работа с куки----------------------------------------------------------------------//
+
+
+     let saveCookie = () => {
+       localStorage.setItem('budgetMonthValue',budgetMonthValue.value);
+       localStorage.setItem('budgetDayValue',budgetDayValue.value);
+       localStorage.setItem('expensesMonthValue',expensesMonthValue.value);
+       localStorage.setItem('additionalExpensesValue',additionalExpensesValue.value);
+       localStorage.setItem('additionalIncomeValue',additionalIncomeValue.value);
+       localStorage.setItem('targetMonthValue',targetMonthValue.value);
+       localStorage.setItem('incomePeriodValue',incomePeriodValue.value);
+     }
+
+     let loadCookie = () => {
+       budgetMonthValue.value = localStorage.getItem('budgetMonthValue');
+       budgetDayValue.value = localStorage.getItem('budgetDayValue');
+       expensesMonthValue.value = localStorage.getItem('expensesMonthValue');
+       additionalExpensesValue.value = localStorage.getItem('additionalExpensesValue');
+       additionalIncomeValue.value = localStorage.getItem('additionalIncomeValue');
+       targetMonthValue.value = localStorage.getItem('targetMonthValue');
+       incomePeriodValue.value = localStorage.getItem('incomePeriodValue');
+
+     }
+
+     window.addEventListener('load',loadCookie);
+     console.log(localStorage);
