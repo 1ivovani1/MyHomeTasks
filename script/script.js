@@ -1,15 +1,22 @@
 window.addEventListener('DOMContentLoaded',function() {
     'use strict';
+    const months = ['january','february','march','april','may','june','july','august','september','october','november','december'];
+
+    let dateNow = new Date(),
+        nextDay = `${dateNow.getUTCDate() + 1} ${months[dateNow.getUTCMonth()]} ${dateNow.getUTCFullYear()}`;
+
 
     function countTimer(deadline){
+       let dateNow1 = new Date(),
+           nextDay1 = `${dateNow1.getUTCDate() + 2} ${months[dateNow1.getUTCMonth()]} ${dateNow1.getUTCFullYear()}`;
       let timerHours = document.querySelector('#timer-hours'),
           timerMinutes = document.querySelector('#timer-minutes'),
           timerSeconds = document.querySelector('#timer-seconds');
 
       function getTimeRemaining(){
         let dateStop = new Date(deadline).getTime(),
-            dateNow = new Date().getTime(),
-            timeRemaining = (dateStop - dateNow) / 1000,
+            dateNoww = new Date().getTime(),
+            timeRemaining = (dateStop - dateNoww) / 1000,
             seconds = Math.floor(timeRemaining % 60),
             minutes = Math.floor((timeRemaining / 60) % 60),
             hours = Math.floor(timeRemaining / 60 / 60);
@@ -17,29 +24,20 @@ window.addEventListener('DOMContentLoaded',function() {
             minutes.toString().length === 1 ? minutes = "0" + minutes.toString() : minutes = minutes;
             seconds.toString().length === 1 ? seconds = "0" + seconds.toString() : seconds = seconds;
 
-
-
             return {timeRemaining, hours, minutes, seconds};
       }
 
-      function updateClock(){
         let timer = getTimeRemaining();
-
+        if (timer.timeRemaining < 0) {
+            clearInterval(timerInterval);
+            timerInterval = setInterval(countTimer,1000,nextDay1);
+        }
         timerHours.textContent = timer.hours;
         timerMinutes.textContent = timer.minutes;
         timerSeconds.textContent = timer.seconds;
 
-        if (timer.timeRemaining < 0) {
-          clearInterval(timerInterval);
-          timerHours.textContent = "00";
-          timerMinutes.textContent = "00";
-          timerSeconds.textContent = "00";
-        }
-      }
-
-      updateClock();
     }
 
-    let timerInterval = setInterval(countTimer,1000,'18 july 2019');
+    let timerInterval = setInterval(countTimer,1000,nextDay);
 
 });
