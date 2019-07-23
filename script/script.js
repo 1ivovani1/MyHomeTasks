@@ -298,4 +298,32 @@ window.addEventListener('DOMContentLoaded',function() {
     }
     slider();
 
+    //работа с командой
+
+    const photoChange = () => {
+      const wrapper = document.querySelector('#workers');
+      let prevSrc;
+
+      wrapper.addEventListener('mousemove',(e) => {
+        if (e.target.classList.contains('command__photo')){
+          prevSrc = e.target.src;
+          e.target.src = e.target.dataset.img;
+        }else{
+          e.target.src = prevSrc;
+        }
+      });
+
+    }
+    photoChange();
+
+    const calcValidate = () => {
+      const calcInp = document.querySelectorAll('.calc-block>input');
+         calcInp.forEach((item,index) => {
+           calcInp[index].addEventListener('input',()=>{
+             calcInp[index].value = calcInp[index].value.replace(/[a-z]+/gi,'');
+           })
+         })
+    }
+    calcValidate();
+
 });
