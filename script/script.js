@@ -419,39 +419,38 @@ window.addEventListener('DOMContentLoaded',function() {
               body[val[0]] = val[1];
           }
 
-          postData(body,()=>{
+          postData(body)
+          .then(()=>{
             console.log(successMessage,body);
             statusMessage.textContent = successMessage;
             inputs.forEach(item => item.value = '');
-          },(error)=>{
+          })
+          .catch(error => {
             console.error(error);
             statusMessage.textContent = errorMessage;
-          });
+          })
         })
-
       })
 
-      const postData = (body,outputData,errorData) => {
-        const request = new XMLHttpRequest();
-        request.addEventListener('readystatechange',() => {
+      const postData = (body) => {
+        return new Promise((resolve,reject) => {
+          const request = new XMLHttpRequest();
+          request.addEventListener('readystatechange',() => {
 
-          if (request.readyState !== 4) {
-            return
-          }
-          if(request.status === 200){
-            outputData();
-
-          }else{
-            errorData(request.status)
-
-          }
-
+            if (request.readyState !== 4) {
+              return
+            }
+            if(request.status === 200){
+              resolve();
+            }else{
+              reject();
+            }
+          })
+          request.open('POST','./server.php');
+          request.setRequestHeader('Content-Type','application/JSON');
+          request.send(JSON.stringify(body));
 
         })
-
-        request.open('POST','./server.php');
-        request.setRequestHeader('Content-Type','application/JSON');
-        request.send(JSON.stringify(body));
       }
 
     }
