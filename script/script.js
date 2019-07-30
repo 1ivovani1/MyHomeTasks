@@ -412,44 +412,36 @@ window.addEventListener('DOMContentLoaded',function() {
           e.preventDefault();
           item.appendChild(statusMessage);
           statusMessage.textContent = loadMessage;
-          const formData = new FormData(item);
+          const data = new FormData(item);
           let body = {};
-
-          for (let val of formData.entries()) {
-              body[val[0]] = val[1];
-          }
+          data.forEach((val,key) => {
+            body[key] = val;
+          })
 
           postData(body)
-          .then(()=>{
-            console.log(successMessage,body);
+          .then((response)=>{
+            console.log(response);
+            if (response.status !== 200) {
+              throw new Error("I can't connect to the server...")
+            }
             statusMessage.textContent = successMessage;
             inputs.forEach(item => item.value = '');
           })
           .catch(error => {
             console.error(error);
+            inputs.forEach(item => item.value = '');
             statusMessage.textContent = errorMessage;
           })
-        })
+         })
       })
 
       const postData = (body) => {
-        return new Promise((resolve,reject) => {
-          const request = new XMLHttpRequest();
-          request.addEventListener('readystatechange',() => {
-
-            if (request.readyState !== 4) {
-              return
-            }
-            if(request.status === 200){
-              resolve();
-            }else{
-              reject();
-            }
-          })
-          request.open('POST','./server.php');
-          request.setRequestHeader('Content-Type','application/JSON');
-          request.send(JSON.stringify(body));
-
+        return fetch('./server.php',{
+          method:'POST',
+          headers:{
+            'Content-Type':'application/JSON'
+          },
+          body:JSON.stringify(body)
         })
       }
 
