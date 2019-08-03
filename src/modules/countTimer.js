@@ -11,7 +11,7 @@ const countTimer = (deadline) => {
       timerMinutes = document.querySelector('#timer-minutes'),
       timerSeconds = document.querySelector('#timer-seconds');
 
-  function getTimeRemaining(){
+  const getTimeRemaining = () => {
     let dateStop = new Date(deadline).getTime(),
         dateNoww = new Date().getTime(),
         timeRemaining = (dateStop - dateNoww) / 1000,

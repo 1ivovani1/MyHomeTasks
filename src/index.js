@@ -17,7 +17,6 @@ import sendForm from './modules/ajax';
 import validate from './modules/inputsValid';
 
 
-
 //Таймер
 timer();
 

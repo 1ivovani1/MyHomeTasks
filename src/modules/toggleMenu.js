@@ -21,24 +21,23 @@ const menu = () => {
   const toggleMenu = () => {
     const btnMenu = document.querySelector('.menu'),
           menu = document.querySelector('menu'),
+          mainBlock = document.querySelector('main'),
           menuItems = menu.querySelectorAll('ul>li'),
           nextPage = document.querySelector('.next-part');
 
     const handlerMenu = () => {
-      menu.classList.toggle('active-menu')
+      menu.classList.toggle('active-menu');
     }
 
 
-    menu.addEventListener('click',(e) => {
+
+    window.addEventListener('click',(e) => {
       let target = e.target;
         if(target.classList.contains('close-btn')){
           handlerMenu();
-        }else{
-          target = target.closest('menu');
-          if (target) {
+        }else if (target.matches("main *:not(.menuImg):not(.menuSmall)") || target.closest('menu')) {
             menu.classList.remove('active-menu');
           }
-        }
 
     })
 
