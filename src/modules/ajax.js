@@ -6,8 +6,8 @@ const sendForm = () => {
   const form = document.querySelectorAll('form');
 
   const statusMessage = document.createElement('div');
-        statusMessage.classList.add('success-message')
-        statusMessage.style.cssText = "font-size:2rem;color:white;"
+        statusMessage.classList.add('success-message');
+        statusMessage.style.cssText = "font-size:2rem;color:white;";
 
   form.forEach(item => {
     const inputs = item.querySelectorAll('input');
@@ -45,8 +45,8 @@ const sendForm = () => {
         'Content-Type':'application/JSON'
       },
       body:JSON.stringify(body)
-    })
-  }
+    });
+  };
 
-}
+};
 export default sendForm;

@@ -2,21 +2,18 @@ const photoChange = () => {
   const wrapper = document.querySelector('#workers'),
         srcS = document.querySelectorAll('.command__photo');
 
-  let prevSrc,prevTarget;
+  srcS.forEach((item) => {
+      let ourPhotos;
 
+      item.addEventListener('mouseover',(event) => {
+        ourPhotos = event.target.src;
+        event.target.src = event.target.dataset.img;
+      });
 
-  wrapper.addEventListener('mouseover',(e) => {
-    prevTarget = e.target;
-    prevSrc = prevTarget.src;
-
-    if (prevTarget.classList.contains('command__photo')){
-      prevTarget.src = prevTarget.dataset.img;
-      prevTarget.dataset.img = prevSrc;
-    }else{
-      prevSrc = prevTarget.dataset.img;
-      prevTarget.dataset.img = prevSrc;
-    }
+      item.addEventListener('mouseout',(event) => {
+        event.target.src = ourPhotos;
+      });
   });
 
-}
+};
 export default photoChange;

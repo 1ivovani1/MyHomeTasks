@@ -29,13 +29,11 @@ const menu = () => {
       menu.classList.toggle('active-menu');
     }
 
-
-
     window.addEventListener('click',(e) => {
       let target = e.target;
         if(target.classList.contains('close-btn')){
           handlerMenu();
-        }else if (target.matches("main *:not(.menuImg):not(.menuSmall)") || target.closest('menu')) {
+        }else if (target.matches("main *:not(.menuImg):not(.menuSmall)")) {
             menu.classList.remove('active-menu');
           }
 

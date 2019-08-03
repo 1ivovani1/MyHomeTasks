@@ -4,7 +4,7 @@ const validate = () => {
 
   phones.forEach(item => {
     item.addEventListener('input',() => {
-      item.value = item.value.replace(/[a-zа-я]/gi,'')
+      item.value = item.value.replace(/[a-zа-я]/gi,'');
       if (item.value.length === 12) {
         if (!(/([+]?[0-9\s-\(\)]{3,25})*$/i.test(item.value))) {
           item.value = '';
@@ -16,7 +16,7 @@ const validate = () => {
   })
   messages.forEach(item => {
     item.addEventListener('input',() => {
-      item.value = item.value.replace(/[a-z0-9]/gi,"")
+      item.value = item.value.replace(/[a-z0-9]/gi,"");
     })
   })
 

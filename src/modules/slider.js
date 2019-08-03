@@ -14,7 +14,7 @@ const slider = () => {
       dotsWrapper.appendChild(newDot);
     })
     const allDots = document.querySelectorAll('.dot');
-    allDots[0].classList.add('dot-active')
+    allDots[0].classList.add('dot-active');
   }
   createDot();
 
@@ -91,7 +91,6 @@ const slider = () => {
       startSlide();
     }
   })
-
   startSlide(3000);
 }
 

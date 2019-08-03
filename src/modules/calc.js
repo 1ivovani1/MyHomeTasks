@@ -31,9 +31,9 @@ const myCalc = () => {
         }
 
         if (calcDay.value && calcDay.value < 5) {
-          dayValue *= 2
+          dayValue *= 2;
         }else if(calcDay.value && calcDay.value < 10){
-          dayValue *= 1.5
+          dayValue *= 1.5;
         }
 
         if (typeValue && squareValue) {
@@ -45,7 +45,7 @@ const myCalc = () => {
             i++;
             total.textContent = i;
           }else{
-            clearInterval(interval)
+            clearInterval(interval);
           }
         },10)
       }
